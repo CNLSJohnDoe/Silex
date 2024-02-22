@@ -40,7 +40,7 @@ class ControllerResolver extends BaseControllerResolver
     protected function doGetArguments(Request $request, $controller, array $parameters)
     {
         foreach ($parameters as $param) {
-            if ($param->getClass() && $param->getClass()->isInstance($this->app)) {
+            if (((string) $param->getType()) && is_a($this->app, (string) $param->getType())) {
                 $request->attributes->set($param->getName(), $this->app);
 
                 break;
