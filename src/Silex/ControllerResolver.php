@@ -55,6 +55,7 @@ class ControllerResolver extends BaseControllerResolver
                     break;
                 }
             }
+        }
 
         return parent::doGetArguments($request, $controller, $parameters);
     }
