@@ -41,10 +41,10 @@ class ConstraintValidatorFactory implements ConstraintValidatorFactoryInterface
     /**
      * Constructor
      *
-     * @param \Pimple $container    DI container
+     * @param $container    DI container
      * @param array   $serviceNames Validator service names
      */
-    public function __construct(\Pimple $container, array $serviceNames = array())
+    public function __construct($container, array $serviceNames = array())
     {
         $this->container    = $container;
         $this->serviceNames = $serviceNames;
