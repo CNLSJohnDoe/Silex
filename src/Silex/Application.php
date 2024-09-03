@@ -11,36 +11,36 @@
 
 namespace Silex;
 
+use Silex\EventListener\ConverterListener;
+use Silex\EventListener\LocaleListener;
+use Silex\EventListener\MiddlewareListener;
+use Silex\EventListener\StringToResponseListener;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpKernel\HttpKernel;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpKernel\TerminableInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\HttpKernel\TerminableInterface;
 use Symfony\Component\Routing\RequestContext;
-use Silex\EventListener\LocaleListener;
-use Silex\EventListener\MiddlewareListener;
-use Silex\EventListener\ConverterListener;
-use Silex\EventListener\StringToResponseListener;
+use Symfony\Component\Routing\RouteCollection;
 
 /**
  * The Silex framework class.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Application extends \Pimple implements HttpKernelInterface, TerminableInterface
+class Application implements HttpKernelInterface, TerminableInterface
 {
     const VERSION = '1.2.5';
 
@@ -59,8 +59,6 @@ class Application extends \Pimple implements HttpKernelInterface, TerminableInte
      */
     public function __construct(array $values = array())
     {
-        parent::__construct();
-
         $app = $this;
 
         $this['logger'] = null;
