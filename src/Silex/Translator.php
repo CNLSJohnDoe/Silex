@@ -23,7 +23,7 @@ class Translator extends BaseTranslator
 {
     protected $app;
 
-    public function __construct(Application $app, MessageSelector $selector)
+    public function __construct($app, MessageSelector $selector)
     {
         $this->app = $app;
 
